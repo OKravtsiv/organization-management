@@ -20,10 +20,10 @@ public class Initializer {
 
     @PostConstruct
     public void fillData() {
-        User user1 = new User("Ostap", "Kravtsiv", 22, "+380639033115","OKravtsiv", "lil", UserRights.ADMIN);
-        User user2 = new User("Andriy", "Kimachuk", 30, "+380638957450","AKimachuk", "lol", UserRights.MANAGER);
-        User user3 = new User("Khrystyna", "Koblents", 24, "+380634902769","KKoblents", "lel", UserRights.MANAGER);
-        User user4 = new User("Uliana","Pizhanska", 22, "+380634987555","UPizhanska", "lul", UserRights.MANAGER);
+        User user1 = new User("Ostap", "Kravtsiv", 22, "+380639033115","OKravtsiv", "lil", true, Arrays.asList(UserRights.ADMIN.getAuthority()));
+        User user2 = new User("Andriy", "Kimachuk", 30, "+380638957450","AKimachuk", "lol", true, Arrays.asList(UserRights.MANAGER.getAuthority()));
+        User user3 = new User("Khrystyna", "Koblents", 24, "+380634902769","KKoblents", "lel", true, Arrays.asList(UserRights.MANAGER.getAuthority()));
+        User user4 = new User("Uliana","Pizhanska", 22, "+380634987555","UPizhanska", "lul", true, Arrays.asList(UserRights.MANAGER.getAuthority()));
 
         Map<String, String> attributes1 = new HashMap<>();
         attributes1.put("Colour", "White");

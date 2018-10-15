@@ -1,8 +1,19 @@
 package com.softserveinc.testapi.domain.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 public enum UserRights {
-    BLOCKED,
-    COMMON,
-    MANAGER,
-    ADMIN
+    COMMON((GrantedAuthority) () -> "COMMON"),
+    MANAGER((GrantedAuthority) () -> "MANAGER"),
+    ADMIN((GrantedAuthority) () -> "ADMIN");
+
+    private GrantedAuthority authority;
+
+    UserRights(GrantedAuthority authority) {
+        this.authority = authority;
+    }
+
+    public GrantedAuthority getAuthority() {
+        return authority;
+    }
 }
