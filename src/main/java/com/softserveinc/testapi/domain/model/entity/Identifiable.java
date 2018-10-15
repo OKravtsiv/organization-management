@@ -1,15 +1,13 @@
 package com.softserveinc.testapi.domain.model.entity;
 
-import static com.softserveinc.testapi.domain.model.IdGenerator.*;
-
 public abstract class Identifiable {
-    protected final long id;
+    protected Long id;
 
-    public Identifiable() {
-        this.id = generateId();
+    public Long getId() {
+        return id;
     }
 
-    public long getId() {
-        return id;
+    public void setId(long id) {
+        this.id = id;
     }
 }

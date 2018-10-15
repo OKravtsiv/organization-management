@@ -1,6 +1,8 @@
 package com.softserveinc.testapi.domain.model.storage;
 
 import com.softserveinc.testapi.domain.model.entity.Identifiable;
+import com.softserveinc.testapi.domain.model.storage.generator.IdGenerator;
+import com.softserveinc.testapi.domain.model.storage.generator.IdGeneratorImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,9 +13,16 @@ import java.util.Map;
 @Component
 public abstract class Storage<T extends Identifiable> {
     private Map<Long, T> container;
+    private IdGenerator idGenerator;
 
     public Storage() {
         this.container = new HashMap<>();
+        this.idGenerator = new IdGeneratorImpl();
+    }
+
+    public Storage(Map<Long, T> container, IdGenerator idGenerator) {
+        this.container = container;
+        this.idGenerator = idGenerator;
     }
 
     public List<T> getAll() {
@@ -29,10 +38,14 @@ public abstract class Storage<T extends Identifiable> {
     }
 
     public T save(T object) {
-        if(container.containsKey(object.getId())) {
-            return container.compute(object.getId(), (key, value) -> value = object);
+        if (object.getId() == null) {
+            object.setId(idGenerator.generateId());
         }
         return container.put(object.getId(), object);
+    }
+
+    public T update(T object) {
+        return container.compute(object.getId(), (key, value) -> value = object);
     }
 
     public void saveAll(List<T> objects) {

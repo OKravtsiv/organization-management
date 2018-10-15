@@ -1,5 +1,6 @@
 package com.softserveinc.testapi.domain.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softserveinc.testapi.domain.model.UserRights;
 
 import java.util.List;
@@ -7,9 +8,15 @@ import java.util.List;
 public class User extends Identifiable {
     private String firstName;
     private String secondName;
+    private int age;
+    private String phone;
+    @JsonIgnore
     private String login;
+    @JsonIgnore
     private String password;
+    @JsonIgnore
     private UserRights rights;
+    @JsonIgnore
     private List<Product> products;
 
     public User() {
@@ -20,21 +27,17 @@ public class User extends Identifiable {
         this.password = password;
     }
 
-    public User(String firstName, String secondName, String login, String password, UserRights rights) {
+    public User(String firstName, String secondName, int age, String phone, String login, String password, UserRights rights) {
+        this(login, password);
         this.firstName = firstName;
         this.secondName = secondName;
-        this.login = login;
-        this.password = password;
+        this.age = age;
+        this.phone = phone;
         this.rights = rights;
     }
 
-    public User(String firstName, String secondName, String login, String password, UserRights rights, List<Product> products) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.login = login;
-        this.password = password;
-        this.rights = rights;
-        products.forEach((element) -> element.setSeller(this));
+    public User(String firstName, String secondName, int age, String phone, String login, String password, UserRights rights, List<Product> products) {
+        this(firstName, secondName, age, phone, login, password, rights);
         this.products = products;
     }
 
@@ -57,6 +60,22 @@ public class User extends Identifiable {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getLogin() {
