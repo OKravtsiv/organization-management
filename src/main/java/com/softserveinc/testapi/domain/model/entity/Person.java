@@ -31,8 +31,6 @@ public class Person extends Identifiable {
         this.products = products;
     }
 
-
-
     public void addProduct(Product product) {
         product.setSeller(this);
         products.add(product);

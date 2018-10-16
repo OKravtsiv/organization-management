@@ -1,15 +1,11 @@
 package com.softserveinc.testapi.domain.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Map;
 
 public class Product extends Identifiable{
     private String name;
     private String price;
-    @JsonIgnore
     private int count;
-    @JsonIgnore
     private Person seller;
     private Map<String, String> attributes;
 
