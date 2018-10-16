@@ -2,7 +2,7 @@ package com.softserveinc.testapi.domain.model.entity;
 
 import java.util.Map;
 
-public class Product extends Identifiable{
+public class Product extends Identifiable {
     private String name;
     private String price;
     private int count;

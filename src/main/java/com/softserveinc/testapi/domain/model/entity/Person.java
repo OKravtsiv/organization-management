@@ -1,7 +1,5 @@
 package com.softserveinc.testapi.domain.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 public class Person extends Identifiable {
