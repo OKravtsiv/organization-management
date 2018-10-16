@@ -1,14 +1,7 @@
 package com.softserveinc.testapi.domain.controller;
 
-import com.softserveinc.testapi.domain.model.entity.Person;
-import com.softserveinc.testapi.domain.model.entity.Product;
-import com.softserveinc.testapi.domain.model.entity.User;
-import com.softserveinc.testapi.domain.model.entity.dto.PersonDTO;
 import com.softserveinc.testapi.domain.model.entity.dto.ProductDTO;
-import com.softserveinc.testapi.domain.model.entity.dto.UserDTO;
-import com.softserveinc.testapi.domain.model.storage.PersonStorage;
 import com.softserveinc.testapi.domain.model.storage.ProductStorage;
-import com.softserveinc.testapi.domain.model.storage.UserStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.softserveinc.testapi.domain.model.entity.dto.ProductDTO.*;
+import static com.softserveinc.testapi.domain.model.entity.dto.ProductDTO.mapAll;
 
 @RestController
 public class ProductController {

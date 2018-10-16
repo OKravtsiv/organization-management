@@ -9,7 +9,6 @@ public class Person extends Identifiable {
     private String lastName;
     private int age;
     private String phone;
-    @JsonIgnore
     private List<Product> products;
     private User user;
 
