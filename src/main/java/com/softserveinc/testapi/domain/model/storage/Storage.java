@@ -41,7 +41,8 @@ public abstract class Storage<T extends Identifiable> {
         if (object.getId() == null) {
             object.setId(idGenerator.generateId());
         }
-        return container.put(object.getId(), object);
+        container.put(object.getId(), object);
+        return object;
     }
 
     public T update(T object) {

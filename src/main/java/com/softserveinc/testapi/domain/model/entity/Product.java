@@ -10,7 +10,7 @@ public class Product extends Identifiable{
     @JsonIgnore
     private int count;
     @JsonIgnore
-    private User seller;
+    private Person seller;
     private Map<String, String> attributes;
 
     public Product() {
@@ -55,11 +55,11 @@ public class Product extends Identifiable{
         this.attributes = attributes;
     }
 
-    public User getSeller() {
+    public Person getSeller() {
         return seller;
     }
 
-    public void setSeller(User seller) {
+    public void setSeller(Person seller) {
         this.seller = seller;
     }
 }

@@ -14,16 +14,22 @@ import java.util.Map;
 @Component
 public class Initializer {
     @Autowired
-    private UserStorage userStorage;
+    private PersonStorage personStorage;
     @Autowired
     private ProductStorage productStorage;
+    @Autowired
+    private UserStorage userStorage;
 
     @PostConstruct
     public void fillData() {
-        User user1 = new User("Ostap", "Kravtsiv", 22, "+380639033115","OKravtsiv", "lil", true, Arrays.asList(UserRights.ADMIN.getAuthority()));
-        User user2 = new User("Andriy", "Kimachuk", 30, "+380638957450","AKimachuk", "lol", true, Arrays.asList(UserRights.MANAGER.getAuthority()));
-        User user3 = new User("Khrystyna", "Koblents", 24, "+380634902769","KKoblents", "lel", true, Arrays.asList(UserRights.MANAGER.getAuthority()));
-        User user4 = new User("Uliana","Pizhanska", 22, "+380634987555","UPizhanska", "lul", true, Arrays.asList(UserRights.MANAGER.getAuthority()));
+        com.softserveinc.testapi.domain.model.entity.Person person1 = new com.softserveinc.testapi.domain.model.entity.Person("Ostap", "Kravtsiv", 22, "+380639033115");
+        person1.setUser(userStorage.save(new User("OKravtsiv", "lil", true, Arrays.asList(UserRights.ADMIN.getAuthority()))));
+        com.softserveinc.testapi.domain.model.entity.Person person2 = new com.softserveinc.testapi.domain.model.entity.Person("Andriy", "Kimachuk", 30, "+380638957450");
+        person2.setUser(userStorage.save(new User("AKimachuk", "lol", true, Arrays.asList(UserRights.MANAGER.getAuthority()))));
+        com.softserveinc.testapi.domain.model.entity.Person person3 = new com.softserveinc.testapi.domain.model.entity.Person("Khrystyna", "Koblents", 24, "+380634902769");
+        person3.setUser(userStorage.save(new User("KKoblents", "lel", true, Arrays.asList(UserRights.MANAGER.getAuthority()))));
+        com.softserveinc.testapi.domain.model.entity.Person person4 = new com.softserveinc.testapi.domain.model.entity.Person("Uliana","Pizhanska", 22, "+380634987555");
+        person4.setUser(userStorage.save(new User("UPizhanska", "lul", true, Arrays.asList(UserRights.MANAGER.getAuthority()))));
 
         Map<String, String> attributes1 = new HashMap<>();
         attributes1.put("Colour", "White");
@@ -64,12 +70,12 @@ public class Initializer {
         Product product7 = new Product("Phone", "700$", 30, attributes7);
         Product product8 = new Product("PC", "1300$", 10, attributes8);
 
-        user1.setProducts(Arrays.asList(product1, product2));
-        user2.setProducts(Arrays.asList(product3, product4));
-        user3.setProducts(Arrays.asList(product5, product6));
-        user4.setProducts(Arrays.asList(product7, product8));
+        person1.setProducts(Arrays.asList(product1, product2));
+        person2.setProducts(Arrays.asList(product3, product4));
+        person3.setProducts(Arrays.asList(product5, product6));
+        person4.setProducts(Arrays.asList(product7, product8));
 
-        userStorage.saveAll(Arrays.asList(user1, user2, user3, user4));
+        personStorage.saveAll(Arrays.asList(person1, person2, person3, person4));
         productStorage.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6, product7, product8));
     }
 }

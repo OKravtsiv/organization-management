@@ -1,6 +1,5 @@
 package com.softserveinc.testapi;
 
-import com.softserveinc.testapi.domain.model.storage.Initializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
