@@ -1,8 +1,10 @@
 package com.softserveinc.testapi.domain.model.entity.dto;
 
 import com.softserveinc.testapi.domain.model.entity.Person;
+import com.softserveinc.testapi.domain.model.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class PersonDTO {
@@ -22,7 +24,7 @@ public class PersonDTO {
         this.lastName = person.getLastName();
         this.age = person.getAge();
         this.phone = person.getPhone();
-        this.user = new UserDTO(person.getUser());
+        this.user = new UserDTO(Optional.ofNullable(person.getUser()).orElse(new User()));
     }
 
     public static List<PersonDTO> mapAll(List<Person> people) {

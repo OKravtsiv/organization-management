@@ -1,10 +1,12 @@
 package com.softserveinc.testapi.domain.model.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.softserveinc.testapi.domain.model.entity.Person;
 import com.softserveinc.testapi.domain.model.entity.Product;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ProductDTO {
@@ -25,7 +27,7 @@ public class ProductDTO {
         this.name = product.getName();
         this.price = product.getPrice();
         this.count = product.getCount();
-        this.seller = new PersonDTO(product.getSeller());
+        this.seller = new PersonDTO(Optional.ofNullable(product.getSeller()).orElse(new Person()));
         this.attributes = product.getAttributes();
     }
 

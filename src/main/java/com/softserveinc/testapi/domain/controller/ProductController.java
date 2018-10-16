@@ -24,12 +24,6 @@ public class ProductController {
     @Autowired
     private ProductStorage productStorage;
 
-    @Autowired
-    private PersonStorage personStorage;
-
-    @Autowired
-    private UserStorage userStorage;
-
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
         return ResponseEntity.ok(mapAll(productStorage.getAll()));
@@ -47,12 +41,7 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<ProductDTO> save(ProductDTO productDTO) {
-        Product product = productStorage.save(ProductDTO.restore(productDTO));
-        Person person = personStorage.save(PersonDTO.restore(productDTO.getSeller()));
-        User user = userStorage.save(UserDTO.restore(productDTO.getSeller().getUser()));
-        product.setSeller(person);
-        person.setUser(user);
-        return ResponseEntity.ok(new ProductDTO(product));
+    public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
+        return ResponseEntity.ok(new ProductDTO(productStorage.save(ProductDTO.restore(productDTO))));
     }
 }
