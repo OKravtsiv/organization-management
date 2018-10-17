@@ -12,7 +12,7 @@ public class PersonControllerTest extends BaseTest{
     @Test
     public void pingTest() {
         when()
-                .get("/users")
+                .get("/persons")
                 .then()
                 .statusCode(HttpStatus.OK.value());
     }
