@@ -1,16 +1,19 @@
 package com.softserveinc.testapi.restassured;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.jayway.restassured.RestAssured.when;
+
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class PersonControllerTest {
+public class PersonControllerTest extends BaseTest{
     @Test
-    public void simpleTest() {
-        Assert.assertTrue(true);
+    public void pingTest() {
+        when()
+                .get("/users")
+                .then()
+                .statusCode(HttpStatus.OK.value());
     }
 }
