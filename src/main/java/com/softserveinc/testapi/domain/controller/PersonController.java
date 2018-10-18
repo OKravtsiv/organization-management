@@ -1,8 +1,6 @@
 package com.softserveinc.testapi.domain.controller;
 
-import com.softserveinc.testapi.domain.model.entity.Person;
 import com.softserveinc.testapi.domain.model.entity.Product;
-import com.softserveinc.testapi.domain.model.entity.User;
 import com.softserveinc.testapi.domain.model.entity.dto.PersonDTO;
 import com.softserveinc.testapi.domain.model.entity.dto.ProductDTO;
 import com.softserveinc.testapi.domain.model.storage.PersonStorage;
@@ -14,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.softserveinc.testapi.domain.model.entity.dto.PersonDTO.*;
+import static com.softserveinc.testapi.domain.model.entity.dto.PersonDTO.mapAll;
 
 @RestController
+@RequestMapping("/persons")
 public class PersonController {
     @Autowired
     private PersonStorage personStorage;
@@ -24,23 +23,23 @@ public class PersonController {
     @Autowired
     private ProductStorage productStorage;
 
-    @GetMapping("/persons")
+    @GetMapping
     public ResponseEntity<List<PersonDTO>> getAllUsers() {
         return ResponseEntity.ok(mapAll(personStorage.getAll()));
     }
 
-    @GetMapping("/persons/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PersonDTO> getUserById(@PathVariable long id) {
         return ResponseEntity.ok(new PersonDTO(personStorage.getById(id)));
     }
 
-    @DeleteMapping("/persons/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable long id) {
         personStorage.removeById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PostMapping("/persons/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<ProductDTO> addProduct(@PathVariable long id, ProductDTO productDTO) {
         Product product = productStorage.save(ProductDTO.restore(productDTO));
         product.setSeller(personStorage.getById(id));

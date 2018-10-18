@@ -12,28 +12,29 @@ import java.util.List;
 import static com.softserveinc.testapi.domain.model.entity.dto.ProductDTO.mapAll;
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
     private ProductStorage productStorage;
 
-    @GetMapping("/products")
+    @GetMapping
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
         return ResponseEntity.ok(mapAll(productStorage.getAll()));
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getUserById(@PathVariable long id) {
         return ResponseEntity.ok(new ProductDTO(productStorage.getById(id)));
     }
 
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable long id) {
         productStorage.removeById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PostMapping("/products")
+    @PostMapping
     public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(new ProductDTO(productStorage.save(ProductDTO.restore(productDTO))));
     }
