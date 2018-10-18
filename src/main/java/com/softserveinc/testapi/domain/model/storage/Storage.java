@@ -12,8 +12,8 @@ import java.util.Map;
 
 @Component
 public abstract class Storage<T extends Identifiable> {
-    private Map<Long, T> container;
-    private IdGenerator idGenerator;
+    protected Map<Long, T> container;
+    protected IdGenerator idGenerator;
 
     public Storage() {
         this.container = new HashMap<>();
